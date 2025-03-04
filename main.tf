@@ -15,7 +15,7 @@ variable "secret_key" {
 ### 
 
 provider "aws" {
-  region = "ap-northeast-3"
+  region     = "ap-northeast-3"
   access_key = var.access_key
   secret_key = var.secret_key
 }
@@ -33,7 +33,7 @@ resource "aws_security_group" "ssh_access" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] 
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
@@ -56,5 +56,6 @@ resource "aws_instance" "my_ec2" {
 }
 
 output "public_ip" {
-  value = aws_instance.my_ec2.public_ip
+  value     = aws_instance.my_ec2.public_ip
+  sensitive = true
 }
